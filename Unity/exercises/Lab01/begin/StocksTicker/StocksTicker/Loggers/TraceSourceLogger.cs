@@ -9,6 +9,7 @@
 // FITNESS FOR A PARTICULAR PURPOSE.
 //===============================================================================
 using System.Diagnostics;
+using Microsoft.Practices.Unity;
 
 namespace StocksTicker.Loggers
 {
@@ -21,6 +22,14 @@ namespace StocksTicker.Loggers
         {
         }
 
+        /// <summary>
+        /// This constructor has been identified as the default constructor to use during 
+        /// dependency injection with Unity using [InjectionConstructor]. Because it requires a
+        /// .NET Framework object System.Diagnostics.TraceSource, it's been instantiated and its
+        /// instance registered in the container.RegisterInstance(new TraceSource("ui", SourceLevels.All))
+        /// </summary>
+        /// <param name="traceSource"></param>
+        [InjectionConstructor]
         public TraceSourceLogger(TraceSource traceSource)
         {
             this.traceSource = traceSource;

@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using StocksTicker.Loggers;
 
+// adding this allows me to define the Logger property as a Dependency
+using Microsoft.Practices.Unity;
+
 namespace StocksTicker.StockQuoteServices
 {
     public class RandomStockQuoteService : IStockQuoteService
@@ -26,6 +29,12 @@ namespace StocksTicker.StockQuoteServices
         }
 
         private ILogger logger;
+
+        /// <summary>
+        /// This is the RandomStockQuoteService.Logger 
+        /// - marked as a Unity [Dependency], to require container.RegisterType<ILogger, {someclassname]>()
+        /// </summary>
+        [Dependency]
         public ILogger Logger
         {
             get { return logger; }

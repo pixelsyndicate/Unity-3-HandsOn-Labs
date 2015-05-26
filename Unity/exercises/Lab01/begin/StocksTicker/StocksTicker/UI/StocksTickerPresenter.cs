@@ -17,6 +17,9 @@ using System.Timers;
 using StocksTicker.Loggers;
 using StocksTicker.StockQuoteServices;
 
+// add directive to allow the Unity namespace
+using Microsoft.Practices.Unity;
+
 namespace StocksTicker.UI
 {
     public class StocksTickerPresenter
@@ -42,6 +45,12 @@ namespace StocksTicker.UI
         }
 
         private ILogger logger;
+
+        /// <summary>
+        /// This is the StocksTickerPresenter.Logger 
+        /// - marked as a Unity [Dependency("name")], to differentiate it from a previouslyly registered ILogger from the Service.Logger
+        /// </summary>
+        [Dependency("UI")]
         public ILogger Logger
         {
             get { return logger; }
